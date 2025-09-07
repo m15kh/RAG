@@ -1,7 +1,7 @@
 import re
 from typing import Any, AsyncGenerator
 import aiofiles
-from transformers import AutoModel
+from transformers import  AutoTokenizer, AutoModel
 
 
 
@@ -9,7 +9,7 @@ from transformers import AutoModel
 DEFAULT_CHUNK_SIZE = 1024 * 1024 * 50 # 50 megabytes
 
 
-embedder = AutoModel.from_pretrained("jinaai/jina-embeddings-v2-base-en", trust_remote_code=True)
+model = AutoModel.from_pretrained('jinaai/jina-embeddings-v2-base-en', trust_remote_code=True) # trust_remote_code is needed to use the encode method
 
 
 async def load(filepath: str) -> AsyncGenerator[str, Any]:
@@ -28,4 +28,4 @@ def clean(text: str) -> str:
 
 
 def embed(text: str) -> list[float]:
-    return embedder.encode(text).tolist()
+    return model.encode(text).tolist()
