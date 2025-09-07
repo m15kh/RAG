@@ -1,0 +1,4 @@
+__pycache__/
+.venv/
+*.pdf
+p2_pdfEtractor/rag/AI_Detection_and_Semantic_Search_Structured.txt
